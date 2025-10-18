@@ -1,0 +1,172 @@
+================================================================================
+LEGER LABS - ASCII LOGO VARIANTS
+================================================================================
+
+Standard (Unicode):
+-------------------
+● Leger
+
+
+Alternative (ASCII only):
+-------------------------
+(*) Leger
+
+
+Compact:
+--------
+● L
+
+
+Banner (for --help, --version):
+-------------------------------
+    ●
+  Leger
+  Infrastructure for Builders
+
+
+Full Banner with Box:
+---------------------
+  ┌─────────────────────────┐
+  │    ●  L E G E R        │
+  │  Infrastructure for     │
+  │        Builders         │
+  └─────────────────────────┘
+
+
+CLI Usage Examples:
+-------------------
+
+$ leger --version
+● Leger v0.1.0
+
+$ leger init
+● Leger
+  Deploying AI infrastructure...
+  
+  ✓ Installing Podman quadlets
+  ✓ Configuring Tailscale networking
+  ⏳ Pulling container images (this may take a while)
+
+$ leger status
+● Leger
+  
+  Services:
+  ✓ litellm      running
+  ✓ openwebui    running  
+  ✓ whisper      running
+  ⏸ jupyter      stopped
+
+
+Error Format:
+-------------
+● Leger
+
+❌ Deployment failed
+
+   OpenWebUI container failed to start due to insufficient memory.
+   
+   Your system: 16GB RAM
+   Required:    32GB minimum
+   
+   → Disable some services at app.leger.run
+   → Add more RAM to your system
+   
+   Details: https://docs.leger.run/troubleshooting#memory
+
+
+Help Text Header:
+-----------------
+● Leger - Infrastructure for Builders
+
+Usage: leger [command] [options]
+
+Commands:
+  init      Deploy configured AI services
+  status    Check service health
+  stop      Stop all services
+  logs      View service logs
+  update    Update to latest version
+
+Options:
+  --help     Show this help message
+  --version  Show version information
+
+Learn more: https://docs.leger.run
+
+
+Progress Indicators:
+--------------------
+● Deploying...  [▓▓▓▓▓▓▓▓░░░░░░░░░░░░] 40%
+● Deploying...  [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100% ✓
+
+
+ANSI Color Codes (for terminal styling):
+=========================================
+
+In your Go CLI, use these ANSI codes:
+
+// Colors
+const (
+    ColorReset  = "\033[0m"
+    ColorBrand  = "\033[38;2;251;191;36m"  // Amber #fbbf24
+    ColorGray   = "\033[38;2;163;163;163m" // Gray #a3a3a3
+    ColorGreen  = "\033[38;2;34;197;94m"   // Success #22c55e
+    ColorRed    = "\033[38;2;239;68;68m"   // Error #ef4444
+    ColorYellow = "\033[38;2;249;115;22m"  // Warning #f97316
+)
+
+// Formatted output example
+fmt.Printf("%s● Leger%s\n", ColorBrand, ColorReset)
+fmt.Printf("%s  Infrastructure for Builders%s\n", ColorGray, ColorReset)
+
+
+Unicode Characters:
+===================
+● U+25CF BLACK CIRCLE (primary logo)
+○ U+25CB WHITE CIRCLE (alternative)
+◯ U+25EF LARGE CIRCLE (large version)
+✓ U+2713 CHECK MARK (success)
+❌ U+274C CROSS MARK (error)
+⏳ U+23F3 HOURGLASS (loading)
+⏸ U+23F8 PAUSE BUTTON (stopped state)
+▓ U+2593 DARK SHADE (progress bar filled)
+░ U+2591 LIGHT SHADE (progress bar empty)
+→ U+2192 RIGHTWARDS ARROW (suggestions)
+
+
+Implementation in Go:
+=====================
+
+package main
+
+import "fmt"
+
+const (
+    // ANSI colors
+    colorReset  = "\033[0m"
+    colorBrand  = "\033[38;2;251;191;36m"
+    colorGray   = "\033[38;2;163;163;163m"
+    colorGreen  = "\033[38;2;34;197;94m"
+    colorRed    = "\033[38;2;239;68;68m"
+    
+    // Logo
+    logo = "●"
+    name = "Leger"
+)
+
+func printLogo() {
+    fmt.Printf("%s%s %s%s\n", colorBrand, logo, name, colorReset)
+}
+
+func printSuccess(msg string) {
+    fmt.Printf("%s✓%s %s\n", colorGreen, colorReset, msg)
+}
+
+func printError(msg string) {
+    fmt.Printf("%s❌%s %s\n", colorRed, colorReset, msg)
+}
+
+func main() {
+    printLogo()
+    printSuccess("Services deployed successfully")
+}
