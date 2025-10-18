@@ -189,10 +189,125 @@ function generateTokensCSS() {
   lines.push('    font-feature-settings: "rlig" 1, "calt" 1;');
   lines.push('  }');
   lines.push('}');
+  lines.push('');
+  
+  // ==========================================================================
+  // VERCEL-STYLE TYPOGRAPHY UTILITY CLASSES
+  // ==========================================================================
+  lines.push('/* ============================================');
+  lines.push('   VERCEL-STYLE TYPOGRAPHY UTILITIES');
+  lines.push('   Auto-generated from design-tokens.json');
+  lines.push('   ============================================ */');
+  lines.push('');
+  
+  // Heading classes
+  lines.push('/* Headings */');
+  const headingSizes = [
+    { size: '72', lineHeight: '72', letterSpacing: '-4.32px' },
+    { size: '64', lineHeight: '64', letterSpacing: '-3.84px' },
+    { size: '56', lineHeight: '60', letterSpacing: '-2.8px' },
+    { size: '48', lineHeight: '56', letterSpacing: '-1.92px' },
+    { size: '40', lineHeight: '48', letterSpacing: '-1.6px' },
+    { size: '32', lineHeight: '40', letterSpacing: '-1.28px' },
+    { size: '24', lineHeight: '32', letterSpacing: '-0.96px' },
+    { size: '20', lineHeight: '28', letterSpacing: '-0.8px' },
+    { size: '16', lineHeight: '24', letterSpacing: '-0.32px' },
+  ];
+  
+  headingSizes.forEach(({ size, lineHeight, letterSpacing }) => {
+    lines.push(`.text-heading-${size} {`);
+    lines.push(`  font-family: ${tokens.typography.fontFamily.sans};`);
+    lines.push(`  font-size: ${size}px;`);
+    lines.push(`  font-weight: 600;`);
+    lines.push(`  line-height: ${lineHeight}px;`);
+    lines.push(`  letter-spacing: ${letterSpacing};`);
+    lines.push('}');
+    lines.push('');
+  });
+  
+  // Copy/Body text classes
+  lines.push('/* Copy (Body Text) */');
+  const copySizes = [
+    { size: '24', lineHeight: '36' },
+    { size: '20', lineHeight: '30' },
+    { size: '18', lineHeight: '28' },
+    { size: '16', lineHeight: '24' },
+    { size: '14', lineHeight: '20' },
+    { size: '13', lineHeight: '20' },
+  ];
+  
+  copySizes.forEach(({ size, lineHeight }) => {
+    lines.push(`.text-copy-${size} {`);
+    lines.push(`  font-family: ${tokens.typography.fontFamily.sans};`);
+    lines.push(`  font-size: ${size}px;`);
+    lines.push(`  font-weight: 400;`);
+    lines.push(`  line-height: ${lineHeight}px;`);
+    lines.push('}');
+    lines.push('');
+  });
+  
+  // Label classes
+  lines.push('/* Labels */');
+  const labelSizes = [
+    { size: '20', lineHeight: '20' },
+    { size: '18', lineHeight: '20' },
+    { size: '16', lineHeight: '20' },
+    { size: '14', lineHeight: '20' },
+    { size: '13', lineHeight: '20' },
+    { size: '12', lineHeight: '16' },
+  ];
+  
+  labelSizes.forEach(({ size, lineHeight }) => {
+    lines.push(`.text-label-${size} {`);
+    lines.push(`  font-family: ${tokens.typography.fontFamily.sans};`);
+    lines.push(`  font-size: ${size}px;`);
+    lines.push(`  font-weight: 400;`);
+    lines.push(`  line-height: ${lineHeight}px;`);
+    lines.push('}');
+    lines.push('');
+    
+    // Mono variant
+    lines.push(`.text-label-${size}-mono {`);
+    lines.push(`  font-family: ${tokens.typography.fontFamily.mono};`);
+    lines.push(`  font-size: ${size}px;`);
+    lines.push(`  font-weight: 400;`);
+    lines.push(`  line-height: ${lineHeight}px;`);
+    lines.push('}');
+    lines.push('');
+  });
+  
+  // Button classes
+  lines.push('/* Buttons */');
+  const buttonSizes = [
+    { size: '16', lineHeight: '20' },
+    { size: '14', lineHeight: '18' },
+    { size: '12', lineHeight: '16' },
+  ];
+  
+  buttonSizes.forEach(({ size, lineHeight }) => {
+    lines.push(`.text-button-${size} {`);
+    lines.push(`  font-family: ${tokens.typography.fontFamily.sans};`);
+    lines.push(`  font-size: ${size}px;`);
+    lines.push(`  font-weight: 500;`);
+    lines.push(`  line-height: ${lineHeight}px;`);
+    lines.push('}');
+    lines.push('');
+  });
+  
+  // Strong modifiers
+  lines.push('/* Font weight modifiers */');
+  lines.push('[class^="text-copy-"] strong,');
+  lines.push('[class^="text-label-"] strong {');
+  lines.push('  font-weight: 500;');
+  lines.push('}');
+  lines.push('');
+  lines.push('[class^="text-heading-"] strong {');
+  lines.push('  font-weight: 700;');
+  lines.push('}');
 
   const css = lines.join('\n');
   fs.writeFileSync(path.join(distDir, 'tokens.css'), css);
-  console.log('✅ Generated tokens.css (HSL format)');
+  console.log('✅ Generated tokens.css (HSL format + utility classes)');
 }
 
 // =============================================================================
@@ -331,3 +446,8 @@ generateTailwindPreset();
 generateJSModule();
 
 console.log('\n✅ All design system files generated successfully!');
+console.log('\n📦 Generated files:');
+console.log('  - dist/fonts.css');
+console.log('  - dist/tokens.css (HSL variables + utility classes)');
+console.log('  - dist/tailwind.preset.js');
+console.log('  - dist/tokens.js');
