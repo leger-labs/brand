@@ -1,6 +1,8 @@
 node_modules/
 .DS_Store
 Thumbs.db
+*.log
 
-# DO NOT ignore dist/ - it should be committed
-# DO NOT ignore fonts/ - they should be committed
+# Keep dist/ and fonts/ - they should be committed
+# !dist/
+# !fonts/

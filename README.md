@@ -1,96 +1,46 @@
-# Leger Labs Brand Kit
+# Leger Labs Brand Assets
 
-Design system with automated builds via GitHub Actions.
+This directory contains core brand assets for Leger Labs.
 
-## Usage in app.leger.run
-
-### 1. Add as submodule
-```bash
-git submodule add https://github.com/leger-labs/brand.git brand
-git submodule update --init --recursive
+## Directory Structure
+```
+assets/
+├── logo/
+│   ├── leger-logo.svg           # Full lockup (circle + wordmark)
+│   ├── leger-icon.svg           # Circle only
+│   ├── leger-logo-dark.svg      # Optimized for dark backgrounds
+│   ├── leger-logo-light.svg     # Optimized for light backgrounds
+│   └── leger-logo.png           # Raster version (1024x1024)
+├── colors/
+│   └── palette.json             # Programmatic color access
+├── templates/
+│   ├── screenshot-frame.svg     # Browser window frame
+│   └── social-card-template.svg # OG image template
+└── examples/
+    └── usage-examples.md
 ```
 
-### 2. GitHub Actions auto-updates submodule
+## Usage
 
-Add to `.github/workflows/update-brand.yml`:
-```yaml
-name: Update Brand Submodule
-on:
-  schedule:
-    - cron: '0 0 * * *'  # Daily
-  workflow_dispatch:
+- **Web/Digital:** Use SVG versions for crisp rendering at any size
+- **Print:** Export SVG to high-res PNG/PDF at required dimensions
+- **Social Media:** Use templates in `templates/` directory
+- **Code/CLI:** See `ascii-logo.txt` in root directory
 
-jobs:
-  update:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: true
-          token: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Update submodule
-        run: |
-          git submodule update --remote --merge brand
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add brand
-          git diff --staged --quiet || git commit -m "chore: update brand submodule"
-          git push
-```
+## Logo Guidelines
 
-### 3. Update your files
+### Minimum Sizes
+- Icon only: 16px minimum
+- Full lockup: 80px minimum width
 
-**tailwind.config.js:**
-```javascript
-const brandPreset = require('./brand/dist/tailwind.preset');
+### Clear Space
+Maintain clear space equal to 0.5x the circle diameter on all sides.
 
-module.exports = {
-  presets: [brandPreset],
-  content: ['./src/**/*.{ts,tsx}'],
-  plugins: [require('tailwindcss-animate')],
-};
-```
+### Color Treatments
+- Dark backgrounds: White logo (`leger-logo-dark.svg`)
+- Light backgrounds: Black logo (`leger-logo-light.svg`)
+- Always ensure sufficient contrast (WCAG AA minimum)
 
-**src/index.css:**
-```css
-@import '../brand/dist/fonts.css';
-@import '../brand/dist/tokens.css';
+## Questions?
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Your app-specific styles */
-@layer components {
-  .shadow-sm {
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-  }
-  .shadow {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-  }
-  .shadow-md {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-  }
-  .shadow-lg {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-  }
-  
-  .focus-visible\:ring-2:focus-visible {
-    --tw-ring-color: hsl(var(--primary));
-  }
-}
-```
-
-### 4. Remove duplicates from app
-
-Delete from your app:
-- ❌ Color definitions in `tailwind.config.js` (comes from preset)
-- ❌ Font definitions in `tailwind.config.js` (comes from preset)
-- ❌ Typography scale in `tailwind.config.js` (comes from preset)
-- ❌ CSS variables in `src/index.css` (comes from tokens.css)
-
-Keep only:
-- ✅ `tailwindcss-animate` plugin
-- ✅ App-specific component styles
-- ✅ Content paths
+Refer to the complete brand guide at `/docs/brand-guide.md`
