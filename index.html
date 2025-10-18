@@ -16,6 +16,37 @@
     @import url('./dist/fonts.css');
     @import url('./dist/tokens.css');
     
+    /* Color Variables */
+    :root {
+      /* Light mode colors */
+      --background: 0 0% 100%;
+      --foreground: 0 0% 4%;
+      --card: 0 0% 100%;
+      --card-foreground: 0 0% 4%;
+      --primary: 45 88% 80%;
+      --primary-foreground: 0 0% 4%;
+      --secondary: 0 0% 96%;
+      --secondary-foreground: 0 0% 4%;
+      --muted: 0 0% 96%;
+      --muted-foreground: 0 0% 45%;
+      --border: 0 0% 90%;
+    }
+    
+    html.dark {
+      /* Dark mode colors */
+      --background: 0 0% 4%;
+      --foreground: 0 0% 98%;
+      --card: 0 0% 7%;
+      --card-foreground: 0 0% 98%;
+      --primary: 45 88% 80%;
+      --primary-foreground: 0 0% 4%;
+      --secondary: 0 0% 10%;
+      --secondary-foreground: 0 0% 98%;
+      --muted: 0 0% 10%;
+      --muted-foreground: 0 0% 65%;
+      --border: 0 0% 15%;
+    }
+    
     /* Reset */
     * {
       box-sizing: border-box;
@@ -157,20 +188,20 @@
       width: auto;
     }
     
-    /* Show/hide logos based on theme */
-    html.dark .logo-light {
-      display: none;
-    }
-    
-    html.light .logo-dark {
-      display: none;
-    }
-    
+    /* Show/hide logos based on theme - FIXED */
     html.dark .logo-dark {
-      display: block;
+      display: none;
     }
     
     html.light .logo-light {
+      display: none;
+    }
+    
+    html.dark .logo-light {
+      display: block;
+    }
+    
+    html.light .logo-dark {
       display: block;
     }
     
@@ -455,62 +486,33 @@
       height: 16px;
     }
     
-    /* Footer */
+    /* Footer - SIMPLIFIED */
     .footer {
       margin-top: 6rem;
-      padding: 3rem 0;
+      padding: 2rem 0;
       border-top: 1px solid hsl(var(--border));
     }
     
     .footer-content {
       display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-    
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 3rem;
-    }
-    
-    .footer-section h4 {
-      font-size: 0.875rem;
-      font-weight: 600;
-      margin-top: 0;
-      margin-bottom: 1rem;
-      color: hsl(var(--foreground));
-    }
-    
-    .footer-section p {
-      font-size: 0.875rem;
-      color: hsl(var(--muted-foreground));
-      max-width: 35ch;
-    }
-    
-    .footer-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      list-style: none;
-    }
-    
-    .footer-links a {
-      font-size: 0.875rem;
-      color: hsl(var(--muted-foreground));
-      transition: color 0.2s ease;
-    }
-    
-    .footer-links a:hover {
-      color: hsl(var(--primary));
-    }
-    
-    .footer-bottom {
-      display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: 2rem;
-      border-top: 1px solid hsl(var(--border));
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .footer-logo img {
+      height: 24px;
+      width: auto;
+    }
+    
+    .footer-text {
       font-size: 0.875rem;
       color: hsl(var(--muted-foreground));
     }
@@ -519,6 +521,17 @@
       display: flex;
       gap: 1.5rem;
       flex-wrap: wrap;
+      font-size: 0.875rem;
+      color: hsl(var(--muted-foreground));
+    }
+    
+    .footer-credits a {
+      color: hsl(var(--muted-foreground));
+      transition: color 0.2s ease;
+    }
+    
+    .footer-credits a:hover {
+      color: hsl(var(--primary));
     }
     
     /* Responsive */
@@ -546,14 +559,8 @@
         justify-content: center;
       }
       
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-      
-      .footer-bottom {
+      .footer-content {
         flex-direction: column;
-        gap: 1rem;
         align-items: flex-start;
       }
     }
@@ -970,48 +977,17 @@ jobs:
           git push</code></pre>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer - SIMPLIFIED -->
     <footer class="footer">
       <div class="footer-content">
-        <div class="footer-grid">
-          <div class="footer-section">
-            <div class="logo" style="margin-bottom: 1rem;">
-              <img src="./assets/logo/leger-logo-dark.svg" alt="Leger Logo" class="logo-svg-nav logo-dark">
-              <img src="./assets/logo/leger-logo-light.svg" alt="Leger Logo" class="logo-svg-nav logo-light">
-            </div>
-            <p>
-              Infrastructure for Builders. A complete design system for deploying 
-              local AI infrastructure with confidence.
-            </p>
-          </div>
-          
-          <div class="footer-section">
-            <h4>Resources</h4>
-            <ul class="footer-links">
-              <li><a href="https://github.com/leger-labs/brand">GitHub</a></li>
-              <li><a href="./docs/brand-guide.md">Brand Guide</a></li>
-              <li><a href="#usage">Documentation</a></li>
-              <li><a href="https://leger.run">Leger Labs</a></li>
-            </ul>
-          </div>
-          
-          <div class="footer-section">
-            <h4>Design</h4>
-            <ul class="footer-links">
-              <li><a href="#colors">Color Palette</a></li>
-              <li><a href="#typography">Typography</a></li>
-              <li><a href="#components">Components</a></li>
-              <li><a href="./assets/logo">Logo Assets</a></li>
-            </ul>
-          </div>
+        <div class="footer-logo">
+          <img src="./assets/logo/leger-logo-dark.svg" alt="Leger Labs" class="logo-dark">
+          <img src="./assets/logo/leger-logo-light.svg" alt="Leger Labs" class="logo-light">
         </div>
-        
-        <div class="footer-bottom">
-          <p>© 2025 Leger Labs, Inc. Licensed under MIT</p>
-          <div class="footer-credits">
-            <span>Colors by <a href="https://github.com/catppuccin/catppuccin">Catppuccin</a></span>
-            <span>Fonts by <a href="https://vercel.com/font">Vercel</a></span>
-          </div>
+        <div class="footer-credits">
+          <span class="footer-text">© 2025 Leger Labs, Inc. • MIT</span>
+          <span>Colors by <a href="https://github.com/catppuccin/catppuccin">Catppuccin</a></span>
+          <span>Fonts by <a href="https://vercel.com/font">Vercel</a></span>
         </div>
       </div>
     </footer>
