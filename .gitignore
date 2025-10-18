@@ -1,0 +1,6 @@
+node_modules/
+.DS_Store
+Thumbs.db
+
+# DO NOT ignore dist/ - it should be committed
+# DO NOT ignore fonts/ - they should be committed
