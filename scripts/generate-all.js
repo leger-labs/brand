@@ -24,7 +24,7 @@ function generateFontCSS() {
 
 @font-face {
   font-family: 'Geist Sans';
-  src: url('../fonts/geist-sans/GeistVF.woff2') format('woff2-variations');
+  src: url('./fonts/geist-sans/GeistVF.woff2') format('woff2-variations');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -32,7 +32,7 @@ function generateFontCSS() {
 
 @font-face {
   font-family: 'Geist Mono';
-  src: url('../fonts/geist-sans/GeistMonoVF.woff2') format('woff2-variations');
+  src: url('./fonts/geist-sans/GeistMonoVF.woff2') format('woff2-variations');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -41,6 +41,42 @@ function generateFontCSS() {
 
   fs.writeFileSync(path.join(distDir, 'fonts.css'), css);
   console.log('✅ Generated fonts.css');
+}
+
+// =============================================================================
+// COPY FONTS TO DISTRIBUTION
+// =============================================================================
+function copyFontsToDistribution() {
+  const fontsSource = path.join(__dirname, '../fonts');
+  const fontsDest = path.join(__dirname, '../dist/fonts');
+  
+  // Check if source fonts directory exists
+  if (!fs.existsSync(fontsSource)) {
+    console.warn('⚠️  Warning: Fonts directory not found at', fontsSource);
+    return;
+  }
+  
+  // Recursively copy fonts directory to dist
+  function copyDir(src, dest) {
+    if (!fs.existsSync(dest)) {
+      fs.mkdirSync(dest, { recursive: true });
+    }
+    
+    const entries = fs.readdirSync(src, { withFileTypes: true });
+    for (const entry of entries) {
+      const srcPath = path.join(src, entry.name);
+      const destPath = path.join(dest, entry.name);
+      
+      if (entry.isDirectory()) {
+        copyDir(srcPath, destPath);
+      } else {
+        fs.copyFileSync(srcPath, destPath);
+      }
+    }
+  }
+  
+  copyDir(fontsSource, fontsDest);
+  console.log('✅ Copied fonts to dist/');
 }
 
 // =============================================================================
@@ -439,8 +475,11 @@ export default tokens;
   console.log('✅ Generated tokens.js');
 }
 
-// Run all generators
+// =============================================================================
+// RUN ALL GENERATORS
+// =============================================================================
 generateFontCSS();
+copyFontsToDistribution();
 generateTokensCSS();
 generateTailwindPreset();
 generateJSModule();
@@ -448,6 +487,7 @@ generateJSModule();
 console.log('\n✅ All design system files generated successfully!');
 console.log('\n📦 Generated files:');
 console.log('  - dist/fonts.css');
+console.log('  - dist/fonts/ (copied font files)');
 console.log('  - dist/tokens.css (HSL variables + utility classes)');
 console.log('  - dist/tailwind.preset.js');
 console.log('  - dist/tokens.js');
