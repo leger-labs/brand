@@ -50,10 +50,12 @@ function copyFontsToDistribution() {
   const fontsSource = path.join(__dirname, '../fonts');
   const fontsDest = path.join(__dirname, '../dist/fonts');
   
+  console.log('📦 Copying fonts from', fontsSource, 'to', fontsDest);
+  
   // Check if source fonts directory exists
   if (!fs.existsSync(fontsSource)) {
-    console.warn('⚠️  Warning: Fonts directory not found at', fontsSource);
-    return;
+    console.error('❌ Error: Fonts directory not found at', fontsSource);
+    throw new Error('Fonts directory not found - run download-fonts.js first');
   }
   
   // Recursively copy fonts directory to dist
@@ -71,12 +73,24 @@ function copyFontsToDistribution() {
         copyDir(srcPath, destPath);
       } else {
         fs.copyFileSync(srcPath, destPath);
+        console.log('  ✓ Copied', entry.name);
       }
     }
   }
   
-  copyDir(fontsSource, fontsDest);
-  console.log('✅ Copied fonts to dist/');
+  try {
+    copyDir(fontsSource, fontsDest);
+    console.log('✅ Copied fonts to dist/fonts/');
+    
+    // Verify the copy worked
+    if (!fs.existsSync(path.join(fontsDest, 'geist-sans'))) {
+      throw new Error('Font copy verification failed');
+    }
+    console.log('✓ Verified fonts in dist/fonts/');
+  } catch (error) {
+    console.error('❌ Error copying fonts:', error.message);
+    throw error;
+  }
 }
 
 // =============================================================================
