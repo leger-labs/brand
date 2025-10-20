@@ -448,8 +448,8 @@ function generateTailwindPreset() {
 module.exports = ${JSON.stringify(preset, null, 2)};
 `;
 
-  fs.writeFileSync(path.join(distDir, 'tailwind.preset.js'), output);
-  console.log('✅ Generated tailwind.preset.js');
+  fs.writeFileSync(path.join(distDir, 'tailwind.preset.cjs'), output);
+  console.log('✅ Generated tailwind.preset.cjs');
 }
 
 // =============================================================================
@@ -489,5 +489,5 @@ console.log('\n📦 Generated files:');
 console.log('  - dist/fonts.css');
 console.log('  - dist/fonts/ (copied font files)');
 console.log('  - dist/tokens.css (HSL variables + utility classes)');
-console.log('  - dist/tailwind.preset.js');
+console.log('  - dist/tailwind.preset.cjs');
 console.log('  - dist/tokens.js');
