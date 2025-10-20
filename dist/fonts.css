@@ -1,0 +1,21 @@
+/**
+ * Geist Font Family - Variable Fonts
+ * License: SIL Open Font License 1.1
+ * Generated from leger-labs-brand
+ */
+
+@font-face {
+  font-family: 'Geist Sans';
+  src: url('./fonts/geist-sans/GeistVF.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('./fonts/geist-sans/GeistMonoVF.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
