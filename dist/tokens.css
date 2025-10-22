@@ -7,7 +7,7 @@
 @layer base {
   :root {
     /* Brand - Catppuccin Yellow (HSL for opacity) */
-    --primary: 41 86% 83%;
+    --primary: 217 92% 76%;
     --primary-foreground: 0 0% 4%;
 
     /* Backgrounds - Dark Mode (Catppuccin Mocha) */
@@ -41,7 +41,7 @@
     /* Borders */
     --border: 0 0% 15%;
     --input: 0 0% 15%;
-    --ring: 41 86% 83%;
+    --ring: 217 92% 76%;
 
     /* Catppuccin Mocha Palette (hex) */
     --catppuccin-rosewater: #f5e0dc;
@@ -71,7 +71,7 @@
     --card-foreground: 0 0% 4%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 4%;
-    --primary: 41 86% 83%;
+    --primary: 217 92% 76%;
     --primary-foreground: 0 0% 4%;
     --secondary: 0 0% 98%;
     --secondary-foreground: 0 0% 4%;
@@ -83,7 +83,7 @@
     --destructive-foreground: 0 0% 100%;
     --border: 0 0% 90%;
     --input: 0 0% 90%;
-    --ring: 41 86% 83%;
+    --ring: 217 92% 76%;
   }
 }
 
