@@ -2,9 +2,9 @@
   "version": "1.0.0",
   "colors": {
     "brand": {
-      "primary": "#f9e2af",
-      "hover": "#f5d97d",
-      "active": "#e5c55a"
+      "primary": "#3b82f6",
+      "hover": "#60a5fa",
+      "active": "#2563eb"
     },
     "dark": {
       "background": {
@@ -35,7 +35,7 @@
       "teal": "#94e2d5",
       "sky": "#89dceb",
       "sapphire": "#74c7ec",
-      "blue": "#89b4fa",
+      "blue": "#3b82f6",
       "lavender": "#b4befe"
     }
   }

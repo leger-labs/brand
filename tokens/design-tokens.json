@@ -7,14 +7,14 @@
         "50": "#eff6ff",
         "100": "#dbeafe",
         "200": "#bfdbfe",
-        "300": "#a3cafc",
-        "400": "#89b4fa",
-        "500": "#6a9ff9",
-        "600": "#5284e0",
-        "700": "#3d6bc9",
-        "800": "#2d54a3",
-        "900": "#1e3c78",
-        "DEFAULT": "#89b4fa"
+        "300": "#93c5fd",
+        "400": "#60a5fa",
+        "500": "#3b82f6",
+        "600": "#2563eb",
+        "700": "#1d4ed8",
+        "800": "#1e40af",
+        "900": "#1e3a8a",
+        "DEFAULT": "#3b82f6"
       }
     },
     "catppuccin": {
@@ -30,7 +30,7 @@
       "teal": "#94e2d5",
       "sky": "#89dceb",
       "sapphire": "#74c7ec",
-      "blue": "#89b4fa",
+      "blue": "#3b82f6",
       "lavender": "#b4befe"
     },
     "dark": {
@@ -93,10 +93,10 @@
         "bg": "#3a2530"
       },
       "info": {
-        "light": "#b5d5fb",
-        "DEFAULT": "#89b4fa",
-        "dark": "#6a9ff9",
-        "bg": "#252e3a"
+        "light": "#93c5fd",
+        "DEFAULT": "#3b82f6",
+        "dark": "#2563eb",
+        "bg": "#1e293b"
       }
     },
     "syntax": {
@@ -105,7 +105,7 @@
       "comment": "#6c7086",
       "keyword": "#cba6f7",
       "string": "#a6e3a1",
-      "function": "#89b4fa",
+      "function": "#3b82f6",
       "variable": "#cdd6f4",
       "number": "#fab387",
       "operator": "#94e2d5",

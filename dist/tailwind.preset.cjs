@@ -60,7 +60,7 @@ module.exports = {
           "teal": "#94e2d5",
           "sky": "#89dceb",
           "sapphire": "#74c7ec",
-          "blue": "#89b4fa",
+          "blue": "#3b82f6",
           "lavender": "#b4befe"
         }
       },
