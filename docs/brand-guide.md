@@ -255,11 +255,11 @@ Dark mode is the primary interface. Colors balance technical precision with warm
 --color-error-dark:     #ed6888;
 --color-error-bg:       #3a2530;
 
-/* Info - Blue (Catppuccin) */
---color-info-light:     #b5d5fb;
---color-info:           #89b4fa;
---color-info-dark:      #6a9ff9;
---color-info-bg:        #252e3a;
+/* Info - Blue (Tailwind) */
+--color-info-light:     #93c5fd;
+--color-info:           #3b82f6;
+--color-info-dark:      #2563eb;
+--color-info-bg:        #1e293b;
 ```
 
 ### Syntax Highlighting (Dark Mode)
